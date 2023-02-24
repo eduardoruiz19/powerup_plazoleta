@@ -12,8 +12,6 @@ public class FeignClientConfig {
         return  Logger.Level.FULL;
     }
 
-    @Bean
-    public RequestInterceptor securityFeignRequestInterceptor() {
-        return new SecurityFeignRequestInterceptor();
-    }
+
+
 }

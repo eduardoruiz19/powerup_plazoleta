@@ -1,5 +1,6 @@
 package com.example.hexagonal.infrastructure.configuration;
 
+import com.example.hexagonal.application.security.filter.SecurityFeignRequestInterceptor;
 import com.example.hexagonal.domain.api.ICategoryServicePort;
 import com.example.hexagonal.domain.api.IObjectServicePort;
 import com.example.hexagonal.domain.api.IRestaurantServicePort;
@@ -18,6 +19,7 @@ import com.example.hexagonal.infrastructure.out.jpa.mapper.IRestaurantEntityMapp
 import com.example.hexagonal.infrastructure.out.jpa.repository.ICategoryRepository;
 import com.example.hexagonal.infrastructure.out.jpa.repository.IObjectRepository;
 import com.example.hexagonal.infrastructure.out.jpa.repository.IRestaurantRepository;
+import feign.RequestInterceptor;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -73,5 +75,10 @@ public class BeanConfiguration {
         return new RestaurantUseCase(restaurantPersistencePort());
     }
 
+    @Bean
+    public RequestInterceptor securityFeignRequestInterceptor() {
+
+        return new SecurityFeignRequestInterceptor();
+    }
 
 }
