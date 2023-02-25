@@ -53,6 +53,9 @@ public class JWTUtil {
         token=token.substring(7);
         String username=extractUsername(token);
         System.out.println("username decodificado:"+username);
+        Claims claim = getClaims(token);
+        System.out.println("claims:"+claim);
+        System.out.println();
         return username;
 
 

@@ -1,7 +1,6 @@
-package com.example.hexagonal.infrastructure.feignClient;
+package com.example.hexagonal.infrastructure.UserfeignClient;
 
 import feign.Headers;
-import feign.Param;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
@@ -12,11 +11,13 @@ import java.util.List;
 
 
 @FeignClient(value="feingDemo",url = "http://localhost:8081/api/v1/user",configuration = FeignClientConfig.class)
-@Headers("llegan Headers Authorization: {authorization}")
+@Headers("llegan Headers Authorization: {Authorization}")
 public interface FeingServiceUtil {
     @GetMapping(value = "/",consumes = MediaType.APPLICATION_JSON_VALUE)
     List<UserDto> getUsers() ;
 
+    @GetMapping(value = "/list",consumes = MediaType.APPLICATION_JSON_VALUE)
+    List<UserDto> getUsers2(@RequestHeader(HttpHeaders.AUTHORIZATION) String authorization );
     @GetMapping(
             path = "/endpoint1",
             produces = MediaType.APPLICATION_JSON_VALUE

@@ -1,6 +1,7 @@
-package com.example.hexagonal.infrastructure.feignClient;
+package com.example.hexagonal.infrastructure.UserfeignClient;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -14,24 +15,23 @@ import java.util.List;
 @RequestMapping("/demo")
 public class FeignDemoController {
     @Autowired
-    private  FeingServiceUtil feingServiceUtil;
+    private FeingServiceUtil feingServiceUtil;
 
     @GetMapping("/username")
-    public String getUserName(){
+    public String getUserName() {
 
         return feingServiceUtil.getUsers().toString();
     }
+
     @GetMapping("/users")
-    public ResponseEntity<List<UserDto>> getAll(){
-        return  new ResponseEntity<>(feingServiceUtil.getUsers(), HttpStatus.OK);
+    public ResponseEntity<List<UserDto>> getAll() {
+        return new ResponseEntity<>(feingServiceUtil.getUsers(), HttpStatus.OK);
     }
 
-    @GetMapping("/endpoint")
-    public ResponseEntity<String> someClassName(@RequestHeader("Authorization") String bearerToken) {
+    @GetMapping("/list")
+    public ResponseEntity<?> someClassName(@RequestHeader(HttpHeaders.AUTHORIZATION) String bearerToken) {
 
-        System.out.println(bearerToken); // print out bearer token
-        return  new ResponseEntity<>(bearerToken,HttpStatus.OK);
-        //return  new ResponseEntity<>(feingServiceUtil.getUsers(), HttpStatus.OK);
-        // some more code
+         return ResponseEntity.ok().body(feingServiceUtil.getUsers2(bearerToken));
+
     }
 }

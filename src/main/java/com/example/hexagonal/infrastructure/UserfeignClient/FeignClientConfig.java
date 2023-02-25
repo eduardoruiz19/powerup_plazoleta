@@ -1,7 +1,6 @@
-package com.example.hexagonal.infrastructure.feignClient;
+package com.example.hexagonal.infrastructure.UserfeignClient;
 
 import feign.Logger;
-import feign.RequestInterceptor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 

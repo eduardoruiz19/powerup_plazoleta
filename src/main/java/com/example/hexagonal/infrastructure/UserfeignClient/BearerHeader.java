@@ -1,4 +1,4 @@
-package com.example.hexagonal.infrastructure.feignClient;
+package com.example.hexagonal.infrastructure.UserfeignClient;
 
 public final class BearerHeader {
     private final String token;

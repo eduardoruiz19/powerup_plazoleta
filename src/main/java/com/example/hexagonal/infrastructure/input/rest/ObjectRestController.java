@@ -4,7 +4,7 @@ import com.example.hexagonal.application.dto.request.ObjectRequestDto;
 import com.example.hexagonal.application.dto.response.ObjectResponseDto;
 import com.example.hexagonal.application.handler.IObjectHandler;
 import com.example.hexagonal.application.security.JWTUtil;
-import com.example.hexagonal.infrastructure.feignClient.BearerHeader;
+import com.example.hexagonal.infrastructure.UserfeignClient.BearerHeader;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.ArraySchema;
 import io.swagger.v3.oas.annotations.media.Content;
@@ -12,11 +12,11 @@ import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -61,6 +61,7 @@ public class ObjectRestController {
         try{
             String username=jwtUtil.extractUsername(token);
             System.out.println("usuario:"+username);
+            //SecurityContextHolder.getContext().setAuthentication(token);
 
         }catch (Exception e){
             e.printStackTrace();
