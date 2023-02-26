@@ -23,8 +23,6 @@ public class PlateEntity {
     @Column(name="name")
     private String name;
 
-    @Column(name = "category_id", nullable = false)
-    private Long idCategory;
 
     @Column(name = "description", nullable = false)
     private String description;
@@ -41,8 +39,11 @@ public class PlateEntity {
 
     @Column(name = "active", nullable = false)
     private String active;
-    @OneToMany(mappedBy = "plateEntity")
-    private List<CategoryEntity> categoryEntityList;
+
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name="category_id")
+
+    private CategoryEntity categoryEntity;
 
     @OneToMany(mappedBy = "plateEntity")
     private List<OrderPlateEntity> orderPlateEntityList;

@@ -1,14 +1,16 @@
-package com.example.hexagonal.domain.model;
+package com.example.hexagonal.application.dto.response;
 
-import com.example.hexagonal.infrastructure.out.jpa.entity.CategoryEntity;
-import com.example.hexagonal.infrastructure.out.jpa.entity.OrderPlateEntity;
-import com.example.hexagonal.infrastructure.out.jpa.entity.RestaurantEntity;
+import com.example.hexagonal.domain.model.CategoryModel;
+import com.example.hexagonal.domain.model.OrderPlateModel;
+import com.example.hexagonal.domain.model.RestaurantModel;
+import lombok.Getter;
+import lombok.Setter;
 
-import javax.persistence.*;
 import java.util.List;
 
-public class PlateModel {
-
+@Getter
+@Setter
+public class PlateResponseDto {
     private Long idPlate;
 
     private String name;

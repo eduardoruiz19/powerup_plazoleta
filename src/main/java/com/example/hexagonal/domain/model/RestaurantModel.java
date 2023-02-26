@@ -10,6 +10,8 @@ import lombok.Setter;
 import com.example.hexagonal.domain.exception.DomainException;
 import javax.persistence.OneToMany;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 
 /* Tratar en lo posible de NO usar LOMBOK aqui */
@@ -19,9 +21,9 @@ import java.util.List;
 public class RestaurantModel {
     private Long idRestaurant;
     private String name;
-    private Long nit;
+    private String nit;
     private String address;
-    private Long phone;
+    private String phone;
     private Long id_owner;
     private String urlLogo;
 
@@ -34,19 +36,23 @@ public class RestaurantModel {
     public RestaurantModel() {
     }
 
-    public RestaurantModel(Long idRestaurant, String name, Long nit, String address, Long phone, Long id_owner, String urlLogo, List<OrderModel> orderModelList, List<PlateModel> plateModelList, List<RestaurantEmployeeModel> restaurantEmployeeModelList) {
+    public RestaurantModel(Long idRestaurant, String name, String nit, String address, String phone, Long id_owner, String urlLogo, List<OrderModel> orderModelList, List<PlateModel> plateModelList, List<RestaurantEmployeeModel> restaurantEmployeeModelList) {
         if(name.isEmpty()){
             throw  new DomainException("Name can not be in blank");
         }
-        if(nit.toString().isEmpty()){
+        if(nit.isEmpty()){
             throw  new DomainException("Nit can not be in blank");
         }
         if(address.isEmpty()){
             throw  new DomainException("Adress can not be in blank");
         }
-        if(phone.toString().isEmpty()){
+        if(phone.isEmpty()){
             throw  new DomainException("Phone can not be in blank");
         }
+        if(!validatePhone(phone)){
+            throw new DomainException("Phone format is not Valid");
+        }
+
         if(id_owner.toString().isEmpty()){
             throw  new DomainException("Id Owner can not be in blank");
         }
@@ -82,15 +88,23 @@ public class RestaurantModel {
         if(name.isEmpty()){
             throw new DomainException("Name can not be in blank");
         }
+        if(validateNumber(name)){
+            throw  new DomainException("Restaurant Cannot Be Only Numbers");
+        }
 
         this.name = name;
     }
 
-    public Long getNit() {
+    public String getNit() {
         return nit;
     }
 
-    public void setNit(Long nit) {
+    public void setNit(String nit) {
+
+        if(!validateNumber(nit)){
+            throw  new DomainException("Nit must be Only Number");
+        }
+
         this.nit = nit;
     }
 
@@ -106,14 +120,18 @@ public class RestaurantModel {
         this.address = address;
     }
 
-    public Long getPhone() {
+    public String getPhone() {
         return phone;
     }
 
-    public void setPhone(Long phone) {
-        if(phone.toString().isEmpty()){
+    public void setPhone(String phone) {
+        if(phone.isEmpty()){
             throw new DomainException("Phone can not be in blank");
         }
+        if(!validatePhone(phone)){
+            throw  new DomainException("Phone format is not Valid");
+        }
+
 
         this.phone = phone;
     }
@@ -161,4 +179,37 @@ public class RestaurantModel {
     public void setRestaurantEmployeeModelList(List<RestaurantEmployeeModel> restaurantEmployeeModelList) {
         this.restaurantEmployeeModelList = restaurantEmployeeModelList;
     }
+
+
+    public boolean validatePhone(String phone){
+        if(phone.length()>13){
+            return false;
+        }
+        //String regex = "^\d{10}$";
+
+        String regex = "[+][0-9]{12}";  //validate with CountryCode
+        if(phone.length()<13){
+            //regex= "[0-9]{10}";  //Validate without CountryCode
+            regex= "[0-9]*";  //Validate without CountryCode
+
+        }
+
+        Pattern pattern = Pattern.compile(regex);
+        Matcher matcher = pattern.matcher(phone);
+
+        return matcher.matches(); // returns true if pattern matches, else returns false
+
+    }
+
+    public boolean validateNumber(String number){
+           String regex= "[0-9]*";  //Validate without CountryCode
+
+
+        Pattern pattern = Pattern.compile(regex);
+        Matcher matcher = pattern.matcher(number);
+
+        return matcher.matches(); // returns true if pattern matches, else returns false
+
+    }
+
 }

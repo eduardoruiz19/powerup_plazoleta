@@ -24,8 +24,5 @@ public class CategoryEntity {
     @Column(name="description")
     private String description;
 
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name="plate_id")
-    private PlateEntity plateEntity;
 
 }

@@ -14,9 +14,9 @@ import java.util.List;
 public class RestaurantResponseDto {
     private Long idRestaurant;
     private String name;
-    private Long nit;
+    private String nit;
     private String address;
-    private Long phone;
+    private String phone;
     private Long id_owner;
 
     private String urlLogo;

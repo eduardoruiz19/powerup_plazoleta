@@ -50,9 +50,24 @@ public class CategoryRestController {
                             array = @ArraySchema(schema = @Schema(implementation = ObjectResponseDto.class)))),
             @ApiResponse(responseCode = "404", description = "No data found", content = @Content)
     })
-    @GetMapping("/createCategory")
+    @GetMapping("/")
     public ResponseEntity<List<CategoryResponseDto>> getAllCategories(@RequestHeader(HttpHeaders.AUTHORIZATION) String bearerToken) {
     UserDto userDto= feingServiceUtil.getUserToken(bearerToken);
+        System.out.println("userdto:"+userDto.getNombre());
+        return ResponseEntity.ok(categoryHandler.getAllCategories());
+    }
+
+
+    @Operation(summary = "Get all Categories")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "All Categories returned",
+                    content = @Content(mediaType = "application/json",
+                            array = @ArraySchema(schema = @Schema(implementation = ObjectResponseDto.class)))),
+            @ApiResponse(responseCode = "404", description = "No data found", content = @Content)
+    })
+    @GetMapping("/createCategory")
+    public ResponseEntity<List<CategoryResponseDto>> getAllToken(@RequestHeader(HttpHeaders.AUTHORIZATION) String bearerToken) {
+        UserDto userDto= feingServiceUtil.getUserToken(bearerToken);
         System.out.println("userdto:"+userDto.getNombre());
         return ResponseEntity.ok(categoryHandler.getAllCategories());
     }

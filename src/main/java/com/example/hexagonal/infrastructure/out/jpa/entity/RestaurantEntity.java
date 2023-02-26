@@ -23,11 +23,11 @@ public class RestaurantEntity {
     @Column(name="name", nullable = false)
     private String name;
     @Column(name="nit",nullable = false)
-    private Long nit;
+    private String nit;
     @Column(nullable = false)
     private String address;
     @Column(name="phone",nullable = false)
-    private Long phone;
+    private String phone;
     @Column(name="id_owner",nullable = false)
     private Long id_owner;
     @Column(name="url_logo",nullable = false)
