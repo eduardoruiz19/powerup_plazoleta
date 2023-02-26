@@ -15,6 +15,7 @@ public class JWTUtil {
         return Jwts.builder()
                 .setSubject(userDetails.getUsername())
                 .setIssuedAt(new Date())
+
                 .setExpiration(new Date(System.currentTimeMillis()+ 1000 * 60 * 60 * 10))
                 .signWith(SignatureAlgorithm.HS256,KEY)
                 .compact();
@@ -54,8 +55,8 @@ public class JWTUtil {
         String username=extractUsername(token);
         System.out.println("username decodificado:"+username);
         Claims claim = getClaims(token);
-        System.out.println("claims:"+claim);
-        System.out.println();
+        if (isTokenExpired(token))
+            return null;
         return username;
 
 

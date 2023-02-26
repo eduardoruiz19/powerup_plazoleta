@@ -12,6 +12,6 @@ public class UserDto {
     private Long documentoIdentidad;
     private String celular;
     private String email;
-    private String clave;
+    //private String clave;
     private String rol;
 }

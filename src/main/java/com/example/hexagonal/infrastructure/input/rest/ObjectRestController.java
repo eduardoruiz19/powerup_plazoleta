@@ -72,10 +72,12 @@ public class ObjectRestController {
     @GetMapping(
             path = "/pruebaheader",
             produces = MediaType.APPLICATION_JSON_VALUE
-    )
+        )
     String getData(@RequestHeader(HttpHeaders.AUTHORIZATION) BearerHeader bearerHeader) {
         System.out.println(bearerHeader.toString());
         System.out.println(jwtUtil.extractUsernamefromToken(bearerHeader.toString()));
+        boolean validar = jwtUtil.isTokenExpired(bearerHeader.toString());
+        System.out.println("Token Validado:"+validar);
         return null;
     }
 

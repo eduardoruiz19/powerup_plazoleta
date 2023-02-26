@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import net.minidev.json.annotate.JsonIgnore;
 
 import javax.persistence.*;
 import java.util.List;
@@ -23,20 +24,22 @@ public class RestaurantEntity {
     private String name;
     @Column(name="nit",nullable = false)
     private Long nit;
-    @Column(name="address",nullable = false)
+    @Column(nullable = false)
     private String address;
     @Column(name="phone",nullable = false)
     private Long phone;
     @Column(name="id_owner",nullable = false)
     private Long id_owner;
-
     @Column(name="url_logo",nullable = false)
     private String urlLogo;
     @OneToMany(mappedBy = "restaurantEntity")
+    @JsonIgnore
     private List<OrderEntity> orderEntityList;
     @OneToMany(mappedBy = "restaurantEntity")
+    @JsonIgnore
     private List<PlateEntity> plateEntityList;
     @OneToMany(mappedBy = "restaurantEntity")
+    @JsonIgnore
     private List<RestaurantEmployeeEntity> restaurantEmployeeEntityList;
 
 }

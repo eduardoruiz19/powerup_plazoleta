@@ -14,7 +14,14 @@ public class UserService {
         return  client.getUsers();
     }
 
-    public  String getUser(){
-        return "ok";
+    public UserDto getUserData(String authorization){
+        return  client.getUserToken(authorization);
     }
+
+    public UserDto getUserdataById(Long id, String token){
+        UserDto userDto = client.getUserdataById(id, token);
+        return userDto;
+
+    }
+
 }

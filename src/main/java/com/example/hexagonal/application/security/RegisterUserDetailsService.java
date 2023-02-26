@@ -32,9 +32,10 @@ public class RegisterUserDetailsService  implements UserDetailsService {
         //return new User("root","{noop}root",new ArrayList<>());
         String claveCrypt = "$2a$12$8c60xYTZghVg4E5znC/Ic.q0wtxYcwTWP..2sV/J2zz/EFVb/xoFO";
         //return new User("root",claveCrypt,new ArrayList<>());
-        System.out.println("Usuario no autenticado.  crear Credencial Root");
-        return  new User("root",claveCrypt,new ArrayList<>());
+        System.out.println("RegisterUserDetailsService: Usuario no autenticado.  crear Credencial Root");
+        return  new User(username,claveCrypt,new ArrayList<>());
         //throw new UsernameNotFoundException("Username Not Found");
+
     }
 
 
