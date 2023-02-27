@@ -5,30 +5,23 @@ import com.example.hexagonal.domain.model.OrderPlateModel;
 import com.example.hexagonal.domain.model.RestaurantModel;
 import lombok.Getter;
 import lombok.Setter;
+import org.springframework.validation.annotation.Validated;
 
 import java.util.List;
 
 @Getter
 @Setter
+@Validated
 public class PlateRequestDto {
-
     private Long idPlate;
-
     private String name;
-
-    private Long idCategory;
-
     private String description;
-
     private Long price;
-
-    private RestaurantModel restaurantModel;
-
     private String urlImage;
-
     private String active;
-    private CategoryModel categoryModel;
-
+    private Long idCategory;
+    private Long id_restaurant;
+    private CategoryModel categoryEntity;
+    private RestaurantModel restaurantEntity;
     private List<OrderPlateModel> orderPlateModelList;
-
 }

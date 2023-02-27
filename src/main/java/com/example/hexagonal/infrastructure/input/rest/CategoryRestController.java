@@ -3,6 +3,7 @@ package com.example.hexagonal.infrastructure.input.rest;
 import com.example.hexagonal.application.dto.request.CategoryRequestDto;
 import com.example.hexagonal.application.dto.response.CategoryResponseDto;
 import com.example.hexagonal.application.dto.response.ObjectResponseDto;
+import com.example.hexagonal.application.dto.response.PlateResponseDto;
 import com.example.hexagonal.application.handler.ICategoryHandler;
 import com.example.hexagonal.infrastructure.UserfeignClient.FeingServiceUtil;
 import com.example.hexagonal.infrastructure.UserfeignClient.UserDto;
@@ -47,7 +48,7 @@ public class CategoryRestController {
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "All Categories returned",
                     content = @Content(mediaType = "application/json",
-                            array = @ArraySchema(schema = @Schema(implementation = ObjectResponseDto.class)))),
+                            array = @ArraySchema(schema = @Schema(implementation = CategoryResponseDto.class)))),
             @ApiResponse(responseCode = "404", description = "No data found", content = @Content)
     })
     @GetMapping("/")

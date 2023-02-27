@@ -12,6 +12,7 @@ import com.example.hexagonal.application.mapper.IRestaurantRequestMapper;
 import com.example.hexagonal.application.mapper.IRestaurantResponseMapper;
 import com.example.hexagonal.domain.api.IObjectServicePort;
 import com.example.hexagonal.domain.api.IRestaurantServicePort;
+import com.example.hexagonal.domain.model.CategoryModel;
 import com.example.hexagonal.domain.model.ObjectModel;
 import com.example.hexagonal.domain.model.RestaurantModel;
 import lombok.RequiredArgsConstructor;
@@ -38,5 +39,12 @@ public class RestaurantHandler implements IRestaurantHandler {
     @Override
     public List<RestaurantResponseDto> getAllRestaurants() {
         return restaurantResponseMapper.toResponseList(restaurantServicePort.getAllRestaurants());
+    }
+
+    @Override
+    public RestaurantModel getRestaurantModelByRestaurant_id(Long idRestaurant) {
+        RestaurantModel restaurantModel = restaurantServicePort.getRestaurantByRestaurant_id(idRestaurant);
+        return restaurantModel;
+
     }
 }

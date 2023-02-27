@@ -15,8 +15,6 @@ import java.util.regex.Pattern;
 
 
 /* Tratar en lo posible de NO usar LOMBOK aqui */
-@Getter
-@Setter
 //@AllArgsConstructor
 public class RestaurantModel {
     private Long idRestaurant;

@@ -5,6 +5,7 @@ import com.example.hexagonal.domain.model.RestaurantModel;
 import com.example.hexagonal.domain.spi.IObjectPersistencePort;
 import com.example.hexagonal.domain.spi.IRestaurantPersistencePort;
 import com.example.hexagonal.infrastructure.exception.NoDataFoundException;
+import com.example.hexagonal.infrastructure.out.jpa.entity.CategoryEntity;
 import com.example.hexagonal.infrastructure.out.jpa.entity.ObjectEntity;
 import com.example.hexagonal.infrastructure.out.jpa.entity.RestaurantEntity;
 import com.example.hexagonal.infrastructure.out.jpa.mapper.IObjectEntityMapper;
@@ -36,4 +37,11 @@ public class RestaurantJpaAdapter implements IRestaurantPersistencePort {
         }
         return restaurantEntityMapper.toRestaurantModelList(entityList);
     }
+
+    @Override
+    public RestaurantModel getRestaurantByRestaurant_id(long id) {
+        RestaurantEntity restaurantEntity = restaurantRepository.findByIdRestaurant(id);
+        return restaurantEntityMapper.toRestaurantModel(restaurantEntity);
+    }
+
 }

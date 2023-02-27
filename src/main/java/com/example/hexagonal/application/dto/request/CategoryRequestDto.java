@@ -1,5 +1,6 @@
 package com.example.hexagonal.application.dto.request;
 
+import com.example.hexagonal.domain.model.CategoryModel;
 import com.example.hexagonal.domain.model.PlateModel;
 import lombok.Getter;
 import lombok.Setter;
@@ -16,6 +17,7 @@ public class CategoryRequestDto {
     private String description;
 
     private PlateModel plateModel;
+
 
 
 }

@@ -44,6 +44,15 @@ public class ControllerAdvisor {
                 //txtException = exception.getClass().toString();
                 break;
 
+            case " class com.example.hexagonal.infrastructure.exception.RestaurantNotExistException":
+                txtMensaje = "Error";
+                txtException = "Restaurant ID Not Exist";
+                break;
+
+            case "class com.example.hexagonal.infrastructure.exception.CategoryNotExistException":
+                txtMensaje = "Error";
+                txtException = "Category ID Not Exist";
+                break;
             case "class org.springframework.dao.DataIntegrityViolationException":
                 txtMensaje = "Error";
                 txtException = "Key Field already Exist";

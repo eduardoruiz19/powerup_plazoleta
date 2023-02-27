@@ -21,12 +21,12 @@ public class PlateResponseDto {
 
     private Long price;
 
-    private RestaurantModel restaurantModel;
+    private RestaurantModel restaurantEntity;
 
     private String urlImage;
 
     private String active;
-    private CategoryModel categoryModel;
+    private CategoryModel categoryEntity;
 
     private List<OrderPlateModel> orderPlateModelList;
 

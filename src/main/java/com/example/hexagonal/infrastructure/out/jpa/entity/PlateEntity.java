@@ -1,11 +1,9 @@
 package com.example.hexagonal.infrastructure.out.jpa.entity;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.util.List;
 
 @Entity
@@ -34,15 +32,17 @@ public class PlateEntity {
     @JoinColumn(name="restaurant_id")
     private RestaurantEntity restaurantEntity;
 
+
     @Column(name = "url_image", nullable = false)
     private String urlImage;
 
     @Column(name = "active", nullable = false)
     private String active;
 
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name="category_id")
 
+    @ManyToOne(optional = true, fetch = FetchType.EAGER)
+    @JoinColumn(name="category_id")
+    //@NotNull
     private CategoryEntity categoryEntity;
 
     @OneToMany(mappedBy = "plateEntity")

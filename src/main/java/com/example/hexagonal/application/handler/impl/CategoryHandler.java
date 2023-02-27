@@ -40,6 +40,12 @@ public class CategoryHandler implements ICategoryHandler {
         return categoryResponseMapper.toResponseList(categoryServicePort.getAllCategories());
     }
 
+    @Override
+    public CategoryModel getCategoryModelByCategory_id(Long idCategory) {
+        CategoryModel categoryModel = categoryServicePort.getCategoryByCategory_id(idCategory);
+        return categoryModel;
+    }
+
 
 
 }

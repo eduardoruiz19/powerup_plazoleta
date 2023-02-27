@@ -11,4 +11,6 @@ public interface ICategoryPersistencePort {
     CategoryModel saveCategory(CategoryModel categoryModel);
 
     List<CategoryModel> getAllCategories();
+
+    CategoryModel getCategoryByCategory_id(long id);
 }

@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "category")
@@ -24,5 +25,7 @@ public class CategoryEntity {
     @Column(name="description")
     private String description;
 
+    @OneToMany(fetch =FetchType.EAGER, cascade = CascadeType.ALL,mappedBy = "categoryEntity")
+    private List<PlateEntity> plateEntityList;
 
 }
