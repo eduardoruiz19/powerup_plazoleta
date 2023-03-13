@@ -21,6 +21,9 @@ public class ControllerAdvisor {
         String txtMensaje = "";
         String txtException = "";
         switch (exception.getClass().toString()) {
+
+
+
             case "class com.example.hexagonal.infrastructure.exception.UserDocumentoIdentidadAlreadyExistException":
                 txtMensaje = "Error";
                 txtException = "Document Identity Already Exist ";
@@ -32,6 +35,13 @@ public class ControllerAdvisor {
                 txtException = "User_id  Must Be Owner";
                 //txtException = exception.getClass().toString();
                 break;
+            case "class com.example.hexagonal.infrastructure.exception.PlateNotExistException":
+                txtMensaje = "Error";
+                txtException = "ID Plate Not Exist";
+                //txtException = exception.getClass().toString();
+                break;
+
+
             case "class com.example.hexagonal.infrastructure.exception.UserWithoutCredentialsException":
                 txtMensaje = "Error";
                 txtException = "User Without Credentials";

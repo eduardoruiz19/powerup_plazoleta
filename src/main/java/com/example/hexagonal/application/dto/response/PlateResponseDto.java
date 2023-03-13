@@ -25,7 +25,7 @@ public class PlateResponseDto {
 
     private String urlImage;
 
-    private String active;
+    private boolean active;
     private CategoryModel categoryEntity;
 
     private List<OrderPlateModel> orderPlateModelList;

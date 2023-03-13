@@ -41,6 +41,14 @@ public class PlateHandler implements IPlateHandler {
         return plateResponseMapper.toResponseList(plateServicePort.getAllPlates());
     }
 
+    @Override
+    public PlateModel getPlateById(Long idPlate) {
+        PlateModel plate=plateServicePort.getPlateByIdPlate(idPlate);
+
+        return plate;
+
+
+    }
 
 
 }

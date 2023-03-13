@@ -13,6 +13,10 @@ import com.example.hexagonal.infrastructure.out.jpa.mapper.IRestaurantEntityMapp
 import com.example.hexagonal.infrastructure.out.jpa.repository.IObjectRepository;
 import com.example.hexagonal.infrastructure.out.jpa.repository.IRestaurantRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 
 import java.util.List;
 
@@ -42,6 +46,24 @@ public class RestaurantJpaAdapter implements IRestaurantPersistencePort {
     public RestaurantModel getRestaurantByRestaurant_id(long id) {
         RestaurantEntity restaurantEntity = restaurantRepository.findByIdRestaurant(id);
         return restaurantEntityMapper.toRestaurantModel(restaurantEntity);
+    }
+
+    @Override
+    public List<RestaurantModel> getAllRestaurantsWithPagination(int page, int pageSize) {
+        System.out.println("pagina:"+page+" pageSize:"+pageSize);
+        if(page<1){
+            page=1;
+        }
+        page--;
+        Pageable sortedByName =
+                PageRequest.of(page, pageSize, Sort.by("name").ascending());
+
+
+
+        Page<RestaurantEntity> allRestaurants = restaurantRepository.findAll(sortedByName);
+
+        List<RestaurantEntity> restaurantEntityList = allRestaurants.getContent();
+        return restaurantEntityMapper.toRestaurantModelList(restaurantEntityList);
     }
 
 }

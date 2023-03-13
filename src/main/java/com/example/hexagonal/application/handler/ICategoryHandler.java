@@ -13,7 +13,9 @@ public interface ICategoryHandler {
 
     List<CategoryResponseDto> getAllCategories();
 
+    List<CategoryResponseDto> getAllCategoriesByRestaurant_id(long l);
     CategoryModel getCategoryModelByCategory_id(Long idCategory);
+
 
 
 }

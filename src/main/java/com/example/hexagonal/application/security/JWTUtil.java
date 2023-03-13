@@ -1,6 +1,8 @@
 package com.example.hexagonal.application.security;
 
+import com.nimbusds.jose.jwk.JWKException;
 import io.jsonwebtoken.Claims;
+import io.jsonwebtoken.ExpiredJwtException;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -35,7 +37,9 @@ public class JWTUtil {
     }
 
     private Claims getClaims(String token){
-        return  Jwts.parser().setSigningKey(KEY).parseClaimsJws(token).getBody();
+        Claims claims;
+        claims = Jwts.parser().setSigningKey(KEY).parseClaimsJws(token).getBody();
+        return claims;
     }
 
     /**

@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.List;
 
 
 /* Tratar en lo posible de NO usar LOMBOK aqui */
@@ -22,6 +23,7 @@ public class CategoryModel {
 
     private String description;
 
-    private PlateModel plateModel;
+    private List<PlateEntity> plateEntityList;
+
 
 }

@@ -1,7 +1,6 @@
 package com.example.hexagonal.domain.spi;
 
 import com.example.hexagonal.domain.model.CategoryModel;
-import com.example.hexagonal.domain.model.ObjectModel;
 
 import java.util.List;
 
@@ -12,5 +11,6 @@ public interface ICategoryPersistencePort {
 
     List<CategoryModel> getAllCategories();
 
+    List<CategoryModel> getCategoriesByRestaurant_id(long l);
     CategoryModel getCategoryByCategory_id(long id);
 }

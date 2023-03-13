@@ -28,4 +28,9 @@ public class PlateUseCase implements IPlateServicePort {
     public List<PlateModel> getAllPlates() {
         return platePersistencePort.getAllPlates();
     }
+
+    @Override
+    public PlateModel getPlateByIdPlate(Long idPlate) {
+        return platePersistencePort.getPlateByIdPlate(idPlate);
+    }
 }

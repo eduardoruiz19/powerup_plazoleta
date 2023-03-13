@@ -47,4 +47,10 @@ public class RestaurantHandler implements IRestaurantHandler {
         return restaurantModel;
 
     }
+
+    @Override
+    public List<RestaurantResponseDto> getAllRestaurantsWithPagination(int page, int pageSize) {
+        return restaurantResponseMapper.toResponseList(restaurantServicePort.getAllRestaurantsWithPagination( page,  pageSize));
+
+    }
 }

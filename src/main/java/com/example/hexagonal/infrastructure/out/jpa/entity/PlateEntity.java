@@ -1,5 +1,6 @@
 package com.example.hexagonal.infrastructure.out.jpa.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 
 import javax.persistence.*;
@@ -29,6 +30,7 @@ public class PlateEntity {
     private Long price;
 
     @ManyToOne(fetch = FetchType.EAGER)
+    @JsonIgnore
     @JoinColumn(name="restaurant_id")
     private RestaurantEntity restaurantEntity;
 
@@ -37,15 +39,17 @@ public class PlateEntity {
     private String urlImage;
 
     @Column(name = "active", nullable = false)
-    private String active;
+    private boolean active;
 
 
     @ManyToOne(optional = true, fetch = FetchType.EAGER)
     @JoinColumn(name="category_id")
+    @JsonIgnore
     //@NotNull
     private CategoryEntity categoryEntity;
 
     @OneToMany(mappedBy = "plateEntity")
+    @JsonIgnore
     private List<OrderPlateEntity> orderPlateEntityList;
 
 }

@@ -3,7 +3,7 @@ package com.example.hexagonal.domain.model;
 import com.example.hexagonal.infrastructure.out.jpa.entity.CategoryEntity;
 import com.example.hexagonal.infrastructure.out.jpa.entity.OrderPlateEntity;
 import com.example.hexagonal.infrastructure.out.jpa.entity.RestaurantEntity;
-
+import com.example.hexagonal.domain.exception.DomainException;
 import javax.persistence.*;
 import java.util.List;
 
@@ -13,7 +13,7 @@ public class PlateModel {
     private String description;
     private Long price;
     private String urlImage;
-    private String active;
+    private boolean active;
     private Long idCategory;
     private Long idRestaurant;
     private RestaurantModel restaurantEntity;
@@ -55,7 +55,13 @@ public class PlateModel {
     }
 
     public void setPrice(Long price) {
-        this.price = price;
+
+        if(price>0){
+            this.price = price;
+        }else{
+            throw new DomainException("Price is not Valid");
+        }
+
     }
 
     public RestaurantModel getRestaurantEntity() {
@@ -74,11 +80,11 @@ public class PlateModel {
         this.urlImage = urlImage;
     }
 
-    public String getActive() {
+    public boolean getActive() {
         return active;
     }
 
-    public void setActive(String active) {
+    public void setActive(boolean active) {
         this.active = active;
     }
 

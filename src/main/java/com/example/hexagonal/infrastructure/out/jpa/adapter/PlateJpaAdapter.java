@@ -38,4 +38,12 @@ public class PlateJpaAdapter implements IPlatePersistencePort {
         }
         return plateEntityMapper.toPlateModelList(entityList);
     }
+
+    @Override
+    public PlateModel getPlateByIdPlate(Long idPlate) {
+        PlateEntity plateEntity=plateRepository.findByIdPlate(idPlate);
+        PlateModel plateModel=plateEntityMapper.toPlateModel(plateEntity);
+        return plateModel;
+
+    }
 }

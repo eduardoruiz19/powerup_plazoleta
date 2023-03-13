@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import net.minidev.json.annotate.JsonIgnore;
 
 import javax.persistence.*;
 import java.util.List;
@@ -25,7 +26,9 @@ public class CategoryEntity {
     @Column(name="description")
     private String description;
 
+
     @OneToMany(fetch =FetchType.EAGER, cascade = CascadeType.ALL,mappedBy = "categoryEntity")
+    @JsonIgnore
     private List<PlateEntity> plateEntityList;
 
 }

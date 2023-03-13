@@ -18,7 +18,7 @@ public class PlateRequestDto {
     private String description;
     private Long price;
     private String urlImage;
-    private String active;
+    private boolean active;
     private Long idCategory;
     private Long id_restaurant;
     private CategoryModel categoryEntity;

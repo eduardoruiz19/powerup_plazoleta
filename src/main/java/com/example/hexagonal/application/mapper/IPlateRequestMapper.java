@@ -15,4 +15,5 @@ import org.mapstruct.ReportingPolicy;
         unmappedSourcePolicy = ReportingPolicy.IGNORE)
 public interface IPlateRequestMapper {
     PlateModel toPlateModel(PlateRequestDto plateRequestDto);
+    PlateRequestDto toPlateRequestDto(PlateModel plateModel);
 }

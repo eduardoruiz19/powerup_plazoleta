@@ -17,4 +17,6 @@ public interface IRestaurantHandler {
     List<RestaurantResponseDto> getAllRestaurants();
 
     RestaurantModel getRestaurantModelByRestaurant_id(Long idRestaurant);
+
+    List<RestaurantResponseDto>  getAllRestaurantsWithPagination(int page, int pageSize);
 }

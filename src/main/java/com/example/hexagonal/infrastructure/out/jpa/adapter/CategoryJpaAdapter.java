@@ -37,6 +37,17 @@ public class CategoryJpaAdapter implements ICategoryPersistencePort {
         return categoryEntityMapper.toCategoryModelList(entityList);
     }
 
+    @Override
+    public List<CategoryModel> getCategoriesByRestaurant_id(long l) {
+        List<CategoryEntity> entityList = categoryRepository.findAll();
+        if (entityList.isEmpty()) {
+            throw new NoDataFoundException();
+        }
+
+        return categoryEntityMapper.toCategoryModelList(entityList);
+
+    }
+
 
     @Override
     public CategoryModel getCategoryByCategory_id(long id) {

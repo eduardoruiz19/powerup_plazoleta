@@ -1,11 +1,8 @@
 package com.example.hexagonal.domain.usecase;
 
 import com.example.hexagonal.domain.api.ICategoryServicePort;
-import com.example.hexagonal.domain.api.IObjectServicePort;
 import com.example.hexagonal.domain.model.CategoryModel;
-import com.example.hexagonal.domain.model.ObjectModel;
 import com.example.hexagonal.domain.spi.ICategoryPersistencePort;
-import com.example.hexagonal.domain.spi.IObjectPersistencePort;
 
 import java.util.List;
 
@@ -29,8 +26,19 @@ public class CategoryUseCase implements ICategoryServicePort {
     }
 
     @Override
+    public List<CategoryModel> getAllCategoriesByRestaurant_id() {
+        return categoryPersistencePort.getCategoriesByRestaurant_id(1l);
+    }
+
+
+    @Override
     public CategoryModel getCategoryByCategory_id(long id) {
         return  categoryPersistencePort.getCategoryByCategory_id(id);
+    }
+
+    @Override
+    public List<CategoryModel> getCategoriesByRestaurant_id() {
+        return  categoryPersistencePort.getCategoriesByRestaurant_id(1l);
     }
 
 }

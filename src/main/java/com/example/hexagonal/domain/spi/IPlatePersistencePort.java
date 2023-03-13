@@ -12,4 +12,5 @@ public interface IPlatePersistencePort {
 
     List<PlateModel> getAllPlates();
 
+    PlateModel getPlateByIdPlate(Long idPlate);
 }

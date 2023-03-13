@@ -86,4 +86,18 @@ public class RestaurantRestController {
         return ResponseEntity.ok(restaurantHandler.getAllRestaurants());
     }
 
+
+    @Operation(summary = "Get all Restaurants with pagination and sorting")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "All Restaurants returned",
+                    content = @Content(mediaType = "application/json",
+                            array = @ArraySchema(schema = @Schema(implementation = RestaurantResponseDto.class)))),
+            @ApiResponse(responseCode = "404", description = "No data found", content = @Content)
+    })
+    @GetMapping("/pagination/{page}/{pageSize}")
+    public ResponseEntity<List<RestaurantResponseDto>> getAllRestaurantsWithPagination(@PathVariable int page , @PathVariable int pageSize) {
+        System.out.println("llega a page");
+        return ResponseEntity.ok(restaurantHandler.getAllRestaurantsWithPagination(page,pageSize));
+    }
+
 }
