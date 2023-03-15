@@ -10,6 +10,10 @@ import com.example.hexagonal.domain.model.PlateModel;
 import com.example.hexagonal.domain.model.RestaurantModel;
 import com.example.hexagonal.infrastructure.UserfeignClient.FeingServiceUtil;
 import com.example.hexagonal.infrastructure.UserfeignClient.UserDto;
+import com.example.hexagonal.infrastructure.out.jpa.entity.CategoryEntity;
+import com.example.hexagonal.infrastructure.out.jpa.entity.RestaurantEntity;
+import com.example.hexagonal.infrastructure.out.jpa.mapper.ICategoryEntityMapper;
+import com.example.hexagonal.infrastructure.out.jpa.repository.ICategoryRepository;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.ArraySchema;
 import io.swagger.v3.oas.annotations.media.Content;
@@ -18,6 +22,10 @@ import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -25,6 +33,8 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import static org.springframework.http.ResponseEntity.ok;
 
 @RestController
 @RequestMapping("/api/v1/category")
@@ -35,6 +45,10 @@ public class CategoryRestController {
     private FeingServiceUtil feingServiceUtil;
 
     private final ICategoryHandler categoryHandler;
+
+    private final ICategoryRepository categoryRepository;
+
+    private final ICategoryEntityMapper categoryMapper;
 
     @Operation(summary = "Add a new Category")
     @ApiResponses(value = {
@@ -59,10 +73,11 @@ public class CategoryRestController {
     public ResponseEntity<List<CategoryResponseDto>> getAllCategories(@RequestHeader(HttpHeaders.AUTHORIZATION) String bearerToken) {
     UserDto userDto= feingServiceUtil.getUserToken(bearerToken);
         System.out.println("userdto:"+userDto.getNombre());
-        return ResponseEntity.ok(categoryHandler.getAllCategories());
+        return ok(categoryHandler.getAllCategories());
     }
 
 
+    /*
     @Operation(summary = "Get all Categories")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "All Categories returned",
@@ -70,21 +85,15 @@ public class CategoryRestController {
                             array = @ArraySchema(schema = @Schema(implementation = ObjectResponseDto.class)))),
             @ApiResponse(responseCode = "404", description = "No data found", content = @Content)
     })
-    @GetMapping("/search")
-    public ResponseEntity<List<CategoryResponseDto>> getAllToken(@RequestHeader(HttpHeaders.AUTHORIZATION) String bearerToken) {
-        UserDto userDto= feingServiceUtil.getUserToken(bearerToken);
-        System.out.println("userdto:"+userDto.getNombre());
 
-        return ResponseEntity.ok(categoryHandler.getAllCategoriesByRestaurant_id(1l));
-    }
 
 
     @GetMapping("/restaurant/{restaurant_id}/{page}/{pageSize}")
-    public ResponseEntity<List<CategoryResponseDto>> getAllToken(@PathVariable long restaurant_id,@RequestHeader(HttpHeaders.AUTHORIZATION) String bearerToken) {
+    public ResponseEntity<List<CategoryResponseDto>> getPlatesByRestaurant_id(@PathVariable long pageSize,@PathVariable long page,@PathVariable long restaurant_id,@RequestHeader(HttpHeaders.AUTHORIZATION) String bearerToken) {
         UserDto userDto= feingServiceUtil.getUserToken(bearerToken);
         System.out.println("Id:" + restaurant_id);
         System.out.println("userdto:"+userDto.getNombre());
-        List<CategoryResponseDto> listaTotal = categoryHandler.getAllCategoriesByRestaurant_id(restaurant_id);
+        List<CategoryResponseDto> listaTotal = categoryHandler.getAllCategoriesByRestaurant_id(restaurant_id,page,pageSize);
         List <CategoryResponseDto> listaFiltrada= new ArrayList<>();
 
         try {
@@ -126,13 +135,32 @@ public class CategoryRestController {
                 categoriaNueva.setPlateEntityList(listaPlatosFiltrada);
                 listaFiltrada.add(categoriaNueva);
 
+                System.out.println("pagina:"+page+" pageSize:"+pageSize);
+                if(page<1){
+                    page=1;
+                }
+                page--;
+                Pageable sortedByName =
+                        PageRequest.of((int) page, (int) pageSize, Sort.by("name").ascending());
+
+
+
+                //Page<CategoryEntity> allCategories = categoryRepository.findAllWithPagination();
+                //Page<CategoryResponseDto> paginaCategoria=
+                //List<CategoryResponseDto> categoryEntitiesEntityList = allCategories.getContent();
+                //return categoryMapper.toRestaurantModelList(restaurantEntityList);
+                //return categoryMapper.toCategoryModelList(categoryEntitiesEntityList);
+
+
             }
         }catch (Exception e){
             e.printStackTrace();
         }
 
-            return ResponseEntity.ok(listaFiltrada);
+            return ok(listaFiltrada);
 
     }
+    */
+
 
 }

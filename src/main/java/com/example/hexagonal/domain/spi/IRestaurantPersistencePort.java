@@ -13,6 +13,5 @@ public interface IRestaurantPersistencePort {
 
     List<RestaurantModel> getAllRestaurants();
     RestaurantModel getRestaurantByRestaurant_id(long id);
-
     List<RestaurantModel> getAllRestaurantsWithPagination(int page, int pageSize);
 }

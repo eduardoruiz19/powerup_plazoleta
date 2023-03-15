@@ -174,8 +174,17 @@ public class PlateRestController {
                             array = @ArraySchema(schema = @Schema(implementation = PlateResponseDto.class)))),
             @ApiResponse(responseCode = "404", description = "No data found", content = @Content)
     })
+
     @GetMapping("/restaurant/{id}")
     public ResponseEntity<List<PlateResponseDto>> getAllPlates(@RequestHeader(HttpHeaders.AUTHORIZATION) String bearerToken) {
+        UserDto userDto = feingServiceUtil.getUserToken(bearerToken);
+        System.out.println("userdto:" + userDto.getNombre() + " " + userDto.getRol());
+        System.out.println();
+        return ResponseEntity.ok(plateHandler.getAllPlates());
+    }
+
+    @GetMapping("/paged/{id}")
+    public ResponseEntity<List<PlateResponseDto>> getAllPlatesPaged(@RequestHeader(HttpHeaders.AUTHORIZATION) String bearerToken) {
         UserDto userDto = feingServiceUtil.getUserToken(bearerToken);
         System.out.println("userdto:" + userDto.getNombre() + " " + userDto.getRol());
         System.out.println();

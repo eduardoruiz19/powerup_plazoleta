@@ -12,9 +12,10 @@ public interface ICategoryServicePort {
     void saveCategory(CategoryModel categoryModel);
 
     List<CategoryModel> getAllCategories();
-    List<CategoryModel> getAllCategoriesByRestaurant_id();
+
 
     CategoryModel getCategoryByCategory_id(long id);
 
-    List<CategoryModel> getCategoriesByRestaurant_id();
+
+
 }

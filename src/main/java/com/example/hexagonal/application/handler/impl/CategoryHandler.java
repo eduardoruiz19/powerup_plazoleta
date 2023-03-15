@@ -33,9 +33,12 @@ public class CategoryHandler implements ICategoryHandler {
         return categoryResponseMapper.toResponseList(categoryServicePort.getAllCategories());
     }
 
+
+
+
     @Override
-    public List<CategoryResponseDto> getAllCategoriesByRestaurant_id(long l) {
-        return categoryResponseMapper.toResponseList(categoryServicePort.getCategoriesByRestaurant_id());
+    public List<CategoryResponseDto> findAllPlatesByRestaurantIdWithPagination(long l) {
+        return null;
     }
 
     @Override

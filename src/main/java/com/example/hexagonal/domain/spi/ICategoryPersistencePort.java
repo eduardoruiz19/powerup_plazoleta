@@ -11,6 +11,5 @@ public interface ICategoryPersistencePort {
 
     List<CategoryModel> getAllCategories();
 
-    List<CategoryModel> getCategoriesByRestaurant_id(long l);
     CategoryModel getCategoryByCategory_id(long id);
 }

@@ -12,6 +12,7 @@ import com.example.hexagonal.infrastructure.out.jpa.mapper.IObjectEntityMapper;
 import com.example.hexagonal.infrastructure.out.jpa.repository.ICategoryRepository;
 import com.example.hexagonal.infrastructure.out.jpa.repository.IObjectRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
 
 import java.util.List;
 
@@ -37,16 +38,7 @@ public class CategoryJpaAdapter implements ICategoryPersistencePort {
         return categoryEntityMapper.toCategoryModelList(entityList);
     }
 
-    @Override
-    public List<CategoryModel> getCategoriesByRestaurant_id(long l) {
-        List<CategoryEntity> entityList = categoryRepository.findAll();
-        if (entityList.isEmpty()) {
-            throw new NoDataFoundException();
-        }
 
-        return categoryEntityMapper.toCategoryModelList(entityList);
-
-    }
 
 
     @Override

@@ -30,6 +30,11 @@ public class PlateUseCase implements IPlateServicePort {
     }
 
     @Override
+    public List<PlateModel> getAllPlatesByid_restaurantOrderByidCategory(long restaurant_id) {
+        return null;
+    }
+
+    @Override
     public PlateModel getPlateByIdPlate(Long idPlate) {
         return platePersistencePort.getPlateByIdPlate(idPlate);
     }

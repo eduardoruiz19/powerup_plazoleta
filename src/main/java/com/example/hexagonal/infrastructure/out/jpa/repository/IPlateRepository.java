@@ -6,6 +6,10 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.repository.PagingAndSortingRepository;
 
 /*   */
+
 public interface IPlateRepository extends JpaRepository<PlateEntity, Long> {
+//public interface IPlateRepository extends PagingAndSortingRepository<PlateEntity, Long> {
     PlateEntity findByIdPlate(long id);
+
+
 }

@@ -13,5 +13,7 @@ public interface IPlateServicePort {
 
     List<PlateModel> getAllPlates();
 
+    List<PlateModel> getAllPlatesByid_restaurantOrderByidCategory(long restaurant_id);
+
     PlateModel getPlateByIdPlate(Long idPlate);
 }

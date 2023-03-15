@@ -42,6 +42,11 @@ public class PlateHandler implements IPlateHandler {
     }
 
     @Override
+    public List<PlateResponseDto> getAllPlatesByid_restaurantOrderByidCategory(long restaurant_id) {
+        return plateResponseMapper.toResponseList(plateServicePort.getAllPlatesByid_restaurantOrderByidCategory(restaurant_id));
+    }
+
+    @Override
     public PlateModel getPlateById(Long idPlate) {
         PlateModel plate=plateServicePort.getPlateByIdPlate(idPlate);
 

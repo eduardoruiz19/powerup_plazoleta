@@ -25,10 +25,6 @@ public class CategoryUseCase implements ICategoryServicePort {
         return categoryPersistencePort.getAllCategories();
     }
 
-    @Override
-    public List<CategoryModel> getAllCategoriesByRestaurant_id() {
-        return categoryPersistencePort.getCategoriesByRestaurant_id(1l);
-    }
 
 
     @Override
@@ -36,9 +32,6 @@ public class CategoryUseCase implements ICategoryServicePort {
         return  categoryPersistencePort.getCategoryByCategory_id(id);
     }
 
-    @Override
-    public List<CategoryModel> getCategoriesByRestaurant_id() {
-        return  categoryPersistencePort.getCategoriesByRestaurant_id(1l);
-    }
+
 
 }

@@ -15,5 +15,6 @@ public interface IPlateHandler {
 
     List<PlateResponseDto> getAllPlates();
 
+    List<PlateResponseDto> getAllPlatesByid_restaurantOrderByidCategory(long restaurant_id);
     PlateModel getPlateById(Long idPlate);
 }
